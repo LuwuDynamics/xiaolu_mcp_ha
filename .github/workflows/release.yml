@@ -27,13 +27,13 @@ jobs:
       - name: Update manifest version
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" custom_components/ws_mcp_server/manifest.json
+          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" custom_components/xiaolu_mcp_server/manifest.json
           echo "Updated manifest version to: $VERSION"
-          cat custom_components/ws_mcp_server/manifest.json
+          cat custom_components/xiaolu_mcp_server/manifest.json
 
       - name: Create ZIP
         run: |
-          cd custom_components/ws_mcp_server
+          cd custom_components/xiaolu_mcp_server
           zip -r ../../xiaolu_mcp_ha.zip . -x "__pycache__/*" "*.pyc"
           cd ../..
           ls -la xiaolu_mcp_ha.zip

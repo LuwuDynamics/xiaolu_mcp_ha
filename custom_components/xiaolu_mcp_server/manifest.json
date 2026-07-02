@@ -1,5 +1,5 @@
 {
-  "domain": "ws_mcp_server",
+  "domain": "xiaolu_mcp_server",
   "name": "MCP Server for Xiaolu",
   "codeowners": ["@LuwuDynamics"],
   "config_flow": true,
