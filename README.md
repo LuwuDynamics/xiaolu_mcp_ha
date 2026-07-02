@@ -1,56 +1,42 @@
-## xiaolu_mcp_ha
+# xiaolu_mcp_ha
 
-- [English](README.en.md)
-- [中文](README.md)
+[English](README.en.md) | [中文](README.md)
 
-Homeassistant MCP server for 小陆同学，直连小陆同学官方服务器。
+Home Assistant MCP Server，为小陆同学提供直连官方服务器的 WebSocket 接入能力。
 
 [在 HACS 中添加此仓库](https://my.home-assistant.io/redirect/hacs_repository/?owner=LuwuDynamics&repository=xiaolu_mcp_ha&category=integration)
 
-### 插件能力介绍
-#### 1.HomeAssistant自身作为mcp server 以websocket协议直接对接小陆同学服务器，无需中转
-#### 2.在一个实体里同时选择多个API组（HomeAssistant自带控制API、用户自己配置的MCPServer）并将它们一起代理给小陆同学
-#### 3.支持同时配置多个实体
+## 功能特性
 
----
-### 功能演示
+1. Home Assistant 作为 MCP Server，通过 WebSocket 协议直连小陆同学服务器，无需中转
+2. 支持在同一实体中同时选择多个 API 组（Home Assistant 内置控制 API、用户自配置的 MCP Server），统一代理给小陆同学
+3. 支持同时配置多个实体
 
-- [接入演示视频](https://www.bilibili.com/video/BV1XdjJzeEwe)
-- [控制电视演示（通过自定义script实现）](https://www.bilibili.com/video/BV18DM8zuEYV)
-- [HomeAssistant、LLM、MCP、小陆同学的进阶教程](https://www.bilibili.com/video/BV1SruXzqEW5)
+## 安装方法
 
----
- 
-### 安装方法：
+确保 Home Assistant 中已安装 HACS。
 
-确保Home Assistant中已安装HACS
+1. 打开 HACS，搜索 `xiaolu` 或 `xiaolu_mcp_ha`
+2. 下载并安装插件
+3. 重启 Home Assistant
 
-1.打开HACS, 搜索 xiaolu 或 xiaolu_mcp_ha
+## 配置方法
 
-2.下载插件
+进入 **设置 > 设备与服务 > 添加集成**，搜索 "Mcp"，找到 **MCP Server for Xiaolu**。
 
-3.重启Home Assistant.
+填写小陆同学 MCP 接入点地址，选择所需的 MCP，点击提交。
 
-### 配置方法：
+> **说明：** `llm_hass_api` 复选框中的 Assist 选项为 Home Assistant 内置功能，其余选项为你在 Home Assistant 中接入的其他 MCP Server，可直接代理给小陆同学。
 
-[设置 > 设备与服务 > 添加集成] > 搜索"Mcp" >找到MCP Server for Xiaolu
+配置完成后，等待约一分钟，前往小陆同学的接入点页面刷新并检查状态。
 
-下一步 > 请填写小陆同学MCP接入点地址、选择需要的MCP > 提交。
+## 调试说明
 
-注意llm_hass_api 复选框里  Assist 就是ha自带的function，其他选项是你在HomeAssistant里接入的其他mcp server（可以在这里直接代理给小陆同学）
+1. **工具暴露范围**取决于你在 Home Assistant 语音助手中公开的实体类型。
+   - 路径：设置 > 语音助手 > 公开
 
-配置完成！！！稍等一分钟后到小陆同学的接入点页面点击刷新，检查状态。
+2. 建议使用最新版本的 Home Assistant，不同版本提供的工具存在明显差异。
 
----
+3. 若调试结果未达预期，优先查看小陆同学的聊天记录，确认其是否正确调用了 Home Assistant 的工具。目前已知灯光控制和音乐控制可能与内置的屏幕控制、音乐控制逻辑冲突，该问题需等待服务端支持内置工具选择后解决。
 
-### 调试说明
-
- 1.暴露的工具取决于你公开给Homeassistant语音助手的实体的种类
- 
-    设置 -> 语音助手 -> 公开
-   
- 2.尽量使用最新版本的homeassistant，单单看5月版本跟3月版本提供的工具就有明显差异
-
- 3.调试时未达到预期，优先看小陆同学的聊天记录，看看小陆同学对这句指令如何处理的，是否有调用homeassistant的工具。目前已知比较大的问题是灯光控制和音乐控制会和内置的屏幕控制、音乐控制逻辑冲突，需要等服务端支持内置工具选择后可解。
- 
- 4.如果流程正确的调用了ha内置的function，可以打开本插件的调试日志再去观测实际的执行情况。
+4. 若流程正确调用了 HA 内置功能，可开启本插件的调试日志以观测实际执行情况。

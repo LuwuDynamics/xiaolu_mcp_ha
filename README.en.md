@@ -1,54 +1,42 @@
-## xiaolu_mcp_ha
-- [English](README.en.md)
-- [中文](README.md)
+# xiaolu_mcp_ha
 
-Homeassistant MCP server for Xiaolu AI，directly connect to Xiaolu AI official server.
+[English](README.en.md) | [中文](README.md)
+
+Home Assistant MCP Server, providing WebSocket access to Xiaolu AI's official server.
 
 [Add this repository to HACS](https://my.home-assistant.io/redirect/hacs_repository/?owner=LuwuDynamics&repository=xiaolu_mcp_ha&category=integration)
 
-### Capabilities
-#### 1.HomeAssistant itself acts as an MCP server and connects directly to the Xiaolu server via the websocket protocol without the need for a proxy.
-#### 2.Select multiple API groups (HomeAssistant's build in Intent APIs and user-configured MCPServer) in one entity and proxy them to Xiaolu
-#### 3.Support configuring multiple entities at the same time
+## Features
 
----
-### Function demonstration
+1. Home Assistant acts as an MCP Server, connecting directly to the Xiaolu server via WebSocket protocol without any intermediary
+2. Supports selecting multiple API groups within a single entity (Home Assistant built-in control APIs and user-configured MCP Servers), unified and proxied to Xiaolu
+3. Supports configuring multiple entities simultaneously
 
-- [Access demonstration video](https://www.bilibili.com/video/BV1XdjJzeEwe)
-- [Control TV presentation (via custom script)](https://www.bilibili.com/video/BV18DM8zuEYV)
-- [HomeAssistant、LLM、MCP、Xiaolu AI advanced tutorials](https://www.bilibili.com/video/BV1SruXzqEW5)
+## Installation
 
----
- 
-### Installation：
+Ensure HACS is installed in Home Assistant.
 
-Make sure HACS is installed in Home Assistant
+1. Open HACS and search for `xiaolu` or `xiaolu_mcp_ha`
+2. Download and install the component
+3. Restart Home Assistant
 
-1.Open HACS and search for xiaolu or xiaolu_mcp_ha
+## Configuration
 
-2.Download the component
+Navigate to **Settings > Devices & Services > Add Integration**, search for "Mcp", and find **MCP Server for Xiaolu**.
 
-3.Restart Home Assistant.
+Enter the Xiaolu MCP access point address, select the desired MCP, and submit.
 
-### Configuration：
+> **Note:** The Assist option in the `llm_hass_api` checkbox represents the Home Assistant built-in function. Other options are MCP Servers you have integrated into Home Assistant, which can be directly proxied to Xiaolu.
 
-[Settings > Devices & Services > Add Integration] > Search for "Mcp" > Find MCP Server for Xiaolu
+After configuration, wait approximately one minute, then refresh the access point page in Xiaolu to verify the status.
 
-Next > Please fill in the Xiaolu MCP access point address, select the required MCP > Submit. 
+## Debugging
 
-Note that the Assist in the llm_hass_api checkbox is the HA built-in function, 
-and the other options are other MCP servers you had connected in HomeAssistant (you can directly proxy to Xiaolu here)
+1. **Exposed tools** depend on the entity types you expose to the Home Assistant voice assistant.
+   - Path: Settings > Voice Assistants > Expose
 
-Configuration is complete! Wait a minute and go to Xiaolu's access point page and click refresh to check the
+2. Use the latest version of Home Assistant whenever possible, as tool availability varies significantly between versions.
 
----
+3. If debugging results are unexpected, first check Xiaolu's chat log to verify whether Home Assistant tools are being invoked correctly. A known issue is that lighting and music control may conflict with the built-in screen and music control logic. This will be resolved once the server supports built-in tool selection.
 
-### Debugging Instructions
-
- 1.The tools exposed depend on the type of entity you expose to the HomeAssistant voice assistant
-   
- 2.Try to use the latest version of HomeAssistant. There are obvious differences in the tools provided by the May version and the March version.
-
- 3.If debugging doesn't work as expected, first check Xiaolu's chat log to see how he handles the command and whether he has a tool that calls HomeAssist. Currently, a major known issue is that lighting and music control can conflict with the built-in screen and music control logic. This will be resolved after the server supports built-in tool selection.
- 
- 4.If the process correctly calls the built-in function of HA, you can open the debug log of this plug-in to observe the actual execution status.
+4. If the process correctly invokes HA's built-in functions, enable the plugin's debug log to observe the actual execution details.
