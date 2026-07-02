@@ -1,0 +1,14 @@
+{
+  "domain": "ws_mcp_server",
+  "name": "MCP Server for Xiaolu",
+  "codeowners": ["@LuwuDynamics"],
+  "config_flow": true,
+  "dependencies": ["homeassistant", "http", "conversation"],
+  "documentation": "https://github.com/LuwuDynamics/xiaolu_mcp_ha",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/LuwuDynamics/xiaolu_mcp_ha/issues",
+  "requirements": ["mcp==1.14.1"],
+  "version": "0.0.8"
+}
+

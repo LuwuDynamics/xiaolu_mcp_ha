@@ -1,0 +1,8 @@
+{
+    "name": "MCP Server for Xiaolu",
+    "content_in_root": false,
+    "render_readme": true,
+    "zip_release": true,
+    "filename": "xiaolu_mcp_ha.zip",
+    "homeassistant": "2025.7.0"
+}
